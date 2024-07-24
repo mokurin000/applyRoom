@@ -1,0 +1,21 @@
+[project]
+name = "applyRoom"
+version = "0.1.0"
+description = "Default template for PDM package"
+authors = [{ name = "mokurin000", email = "1348292515a@gmail.com" }]
+dependencies = [
+    "pytz>=2024.1",
+    "playwright>=1.45.0",
+    "python-dotenv>=1.0.1",
+]
+requires-python = ">=3.10"
+readme = "README.md"
+license = { text = "MIT" }
+
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+
+[tool.pdm]
+distribution = true
