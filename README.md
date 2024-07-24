@@ -9,7 +9,7 @@ apply a room from berklee with playwright
 - python >= `3.10`
 - playwright
 
-# Installation
+## Installation
 
 ```bash
 git clone https://github.com/mokurin000/applyRoom.git
