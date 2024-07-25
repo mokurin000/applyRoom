@@ -114,9 +114,7 @@ async def main():
             await ctx.close()
             await browser.close()
 
-            sleep_time = 1000
-            print(f"Operation finished! will exit after {sleep_time}s...")
-            await sleep(1000)
+            print("Operation finished!")
 
 
 if __name__ == "__main__":
