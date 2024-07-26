@@ -32,11 +32,15 @@ COOKIES = [
 
 def get_time():
     ny_tz = pytz.timezone("America/New_York")
-    ny_time = datetime.now(ny_tz)
 
-    start_time = datetime.combine(
-        date=ny_time.date(), time=time.fromisoformat("19:00:00"), tzinfo=ny_tz
+    ny_time = datetime.now(tz=ny_tz)
+    start_time = ny_tz.localize(
+        datetime.combine(date=ny_time.date(), time=time.fromisoformat("19:00:00"))
     )
+
+    print(f"Current time: {ny_time}")
+    print(f"Target time: {start_time}")
+
     diff = (start_time - ny_time).total_seconds()
 
     target_day = (ny_time + timedelta(days=DIFF_DAY)).strftime("%Y-%m-%d")
@@ -105,9 +109,7 @@ async def main():
         submit_loc = page.locator("input#submitbtn")
 
         try:
-            await slot_loc.wait_for(state="attached")
             await slot_loc.click()
-            await submit_loc.wait_for(state="visible")
             await submit_loc.click()
         finally:
             await ctx.tracing.stop(path="trace.zip")
