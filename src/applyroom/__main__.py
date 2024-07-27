@@ -11,6 +11,7 @@ from playwright.async_api import async_playwright
 load_dotenv()
 
 PERSISTENT = os.environ["APPLY_ROOM_PERSISTENT"]
+USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 GLS/100.10.9939.100"
 
 # days from current day
 DIFF_DAY: int = 2
@@ -89,7 +90,10 @@ async def main():
         browser = await playwright.chromium.launch(
             headless=False,
         )
-        ctx = await browser.new_context(no_viewport=True)
+        ctx = await browser.new_context(
+            no_viewport=True,
+            user_agent=USER_AGENT,
+        )
         await ctx.add_cookies(COOKIES)
         page = await ctx.new_page()
         await page.goto(BASE_URL)
