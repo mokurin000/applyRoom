@@ -109,7 +109,11 @@ async def main():
         submit_loc = page.locator("input#submitbtn")
 
         try:
+            if not page.url == target_url:
+                await page.goto(target_url)
+            await slot_loc.wait_for(state="visible", timeout=0)
             await slot_loc.click()
+            await submit_loc.wait_for(state="visible", timeout=0)
             await submit_loc.click()
         finally:
             await ctx.tracing.stop(path="trace.zip")
